@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 by 7</title>
+    <style>
+        canvas{
+            margin: 10%;
+            padding: 10%;
+        }
+    </style>
+</head>
+<body onload="draw()">
+    <canvas id="sketch" width="1000" height="1000"></canvas>
+    <script>
+        function draw(){
+            var sketch = document.getElementById("sketch");
+            var context = sketch.getContext("2d");
+
+            context.fillStyle = "0000ff";
+
+            for(let i = 0;i < 7; i++){
+                for(let j=0; j<4; j++){
+                    context.beginPath();
+                    context.arc((70*i), (50*j), 15, 0, 2 * Math.PI, true);
+                    context.closePath();
+                    context.fill()
+                }
+            }
+        }
+    </script>
+</body>
+</html>
