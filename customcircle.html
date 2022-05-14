@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>square</title>
+</head>
+<body onload="draw()">
+
+    <canvas id="sketch" width="300" height="300">
+
+    </canvas>
+
+    <script>
+        function draw() {
+        // your drawing goes here
+        var sketch = document.getElementById('sketch');
+        var context = sketch.getContext("2d");
+
+        // radius user input
+        var radiusstring = prompt("Enter a radius, please:");
+        var radiusint = parseInt(radiusstring);
+
+        // use a while loop to ensure the users enters an acceptable radius value
+        while(radiusint>150){
+            radiusstring = prompt("Radius must be less than or equal to 150")
+            radiusint = parseInt(radiusstring)
+        }
+
+        var color = prompt("Enter a color. eg(red. green, blue)")
+
+        while(color != "red" && color != "green" && color != "blue"){
+            color = prompt("I said: Enter a color, eg(red. green, blue)")
+        }
+
+        // define and fill hexcode based on user input
+        if(color === "red"){
+            context.fillStyle = "#ff0000";
+        } else if(color === "green"){
+            context.fillStyle = "#00ff00";
+        } else if(color == "blue"){
+            context.fillStyle = "#0000ff";
+        }
+
+        context.beginPath();
+        context.arc(150, 150, radiusint, 0, 2 * Math.PI, true);
+        context.closePath();
+        context.fill();
+
+        }
+    </script>
+    
+</body>
+</html>
