@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Bounce</title>
+    <style>
+        canvas{
+            margin: 0 0 0 20%;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="sketch" width="480" height="720"></canvas>
+    <script>
+        document.addEventListener("DOMContentLoaded", main)
+        var sketch;
+        var context;
+        var circle = {"x": 0, "y":100, "r": 25}
+        var dy = 2;
+        var refreshRate = 10
+        var accel = 0.9
+
+        function main(){
+            sketch = document.getElementById("sketch");
+            context = sketch.getContext("2d");
+            circle = {"x": 25, "y": sketch.offsetHeight / 2, "r":25};
+            setInterval(animate, refreshRate)
+        }
+
+        function animate(){
+            context.clearRect(0,0,sketch.offsetWidth, sketch.offsetHeight);
+            draw_circle(circle.x, circle.y, circle.r);
+            dy += 1;
+            circle.y += dy
+
+            if(circle.y > sketch.offsetHeight - dy - circle.r){
+                dy *= -accel;
+
+                circle.y = 575;
+            } else if(circle.y < circle.r -dy){
+                dy *= -accel;
+
+                circle.y = 25
+            }
+        } 
+
+        function draw_circle(x, y, r){
+            context.beginPath();
+            context.arc(x,y,r,0,2*Math.PI, true);
+
+            context.closePath();
+            context.fill()
+        }
+    </script>
+</body>
+</html>
